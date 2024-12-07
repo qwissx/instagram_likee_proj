@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    depends_on:
+      - postgres
+    build: .
+    container_name: api_con
+    ports:
+      - "8000:5000"
+    networks:
+      - insta
+
+  postgres:
+    image: "postgres:17"
+    container_name: db_con
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 228669
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - insta
+  
+networks:
+  insta:
+    driver: bridge
